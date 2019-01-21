@@ -67,7 +67,7 @@ if __name__ == "__main__":
             card = myDeck.pop(0)
 
             # Tarrot cards can be reversed, see if this card is 'reversed'. 
-            if randint(1,243) % 19 == 9: # should be roughly 5% of all cards. Because 13. Really Just Because.
+            if randint(1,243) % 19 == 9: # should be roughly 5% of all cards. Because 13. Really, Just Because.
                 card.reversed = True
             
             # Add the card to the spread
