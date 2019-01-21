@@ -1,7 +1,7 @@
 """
     Silly Text Logos to display after a script ends.
     I made these on an online ascii art generator here: https://asciiartgen.now.sh/
-    
+    If 'Scottware' is a registered trade mark no infringment is intended. 
 """
 
 logo = """
