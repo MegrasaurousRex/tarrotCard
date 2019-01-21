@@ -1,6 +1,9 @@
 """
-    Basic Tarrot card class
-    Create a tarrot card or a deck of tarrot cards
+    Basic Tarrot card class used to simulate a Tarrot Card or Tarrot deck
+    The TarrotCard objects have no mehtods only attributes
+        
+    Author: Scott Larson (scott.a.larson@gmail.com)
+    Date: 2019-01-21
 """
 import random
 
@@ -34,7 +37,7 @@ def getRandomTarrotCard():
 
 
 def getTarrotDeck() -> list:
-    """ Return a whole Tarrot Deck, a python list of TarrotCard objects """
+    """ Return a Tarrot Deck, a python list of TarrotCard objects """
     deck = []
 
     for suite in suites:

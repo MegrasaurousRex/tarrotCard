@@ -12,6 +12,9 @@
 
     I have tried to model the deck, cards and flow of the spread as realistically
     as possible.
+    
+    Author: Scott Larson (scott.a.larson@gmail.com)
+    Date: 2019-01-21
 """
 
 from tarrotCard import getTarrotDeck

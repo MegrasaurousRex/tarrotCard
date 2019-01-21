@@ -2,6 +2,9 @@
 """
     A very simple script to get a single Tarrot card
     using the TarrotCard class. 
+    
+    Author: Scott Larson (scott.a.larson@gmail.com)
+    Date: 2019-01-21
 """
 
 import os
