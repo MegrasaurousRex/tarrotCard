@@ -1,5 +1,6 @@
 """
-Create a tarrot card or a deck of tarrot cards
+    Basic Tarrot card class
+    Create a tarrot card or a deck of tarrot cards
 """
 import random
 
@@ -15,6 +16,8 @@ major_arcana_ranks = ("I","II","III","IV", "V","VI","VII","VIII","IX",
         "XX", "XXI",None)
 minor_arcana_cnames = ("A","2","3","4","5","6","7","8","9","10", 'Jack', 'Knight', 'Queen', 'King')
 suites = ("Cups", "Swords", "Wands", "Penticles")
+
+
 def getRandomTarrotCard():
     """Return a random Tarrot card object"""
     major_or_minor = random.randint(0,1)
@@ -29,6 +32,7 @@ def getRandomTarrotCard():
 
     return TarrotCard(card_choice, suite)
 
+
 def getTarrotDeck() -> list:
     """ Return a whole Tarrot Deck, a python list of TarrotCard objects """
     deck = []
@@ -41,6 +45,7 @@ def getTarrotDeck() -> list:
         deck.append(TarrotCard(value, None))
     
     return deck
+
 
 class TarrotCard:
     """ Create a single tarrot card, requires a value and a suite, suite can be None"""
