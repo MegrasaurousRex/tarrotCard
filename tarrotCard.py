@@ -7,7 +7,7 @@
 """
 import random
 
-# expose all methods & variables to the world
+# Unsure if these should go in the TarrotCard class or not...
 major_arcana_cnames = ("The Magician", "The High Priestess", "The Empress", 
     "The Emperor", "The Hierophant", "The Lovers", "The Chariot", 
     "Strength", "The Hermit", "Wheel of Fortune", "Justice", 
