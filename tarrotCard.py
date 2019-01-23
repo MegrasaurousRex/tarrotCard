@@ -91,8 +91,20 @@ class TarrotDeck():
             self.deck.append(TarrotCard(value, None))
             TarrotDeck.card_count += 1
 
-    def shuffleDeck(self, times_to_shuffle=5):
-        '''shuffle the deck 'times_to_shuffle'  '''
+    def shuffleDeck(self, times_to_shuffle=13):
+        '''shuffle the deck 'times_to_shuffle', default is 13 '''
         for round in range(0,times_to_shuffle):
             random.shuffle(self.deck)
+
+    def getASpread(self, spread_size=3):
+        ''' Get cards for a spread, default is 3 cards '''
+        self.shuffle(self.deck)
+        the_spread = []
+        ### Pick UP Here: 
+        ### Need to implement getting x cards
+        ### pop them to get uniqe cards
+        ### return them to the deck, for future calls
+        ### return the temp_deck
+
+
 
