@@ -78,7 +78,6 @@ class TarrotCard:
 class TarrotDeck():
     '''A Tarrot Deck'''
     card_count = 0
-    #deck = []
 
     def __init__(self):
         self.deck = []
