@@ -77,6 +77,7 @@ class TarrotCard:
 
 class TarrotDeck():
     '''A Tarrot Deck'''
+    from random import shuffle
     card_count = 0
 
     def __init__(self):
@@ -90,7 +91,8 @@ class TarrotDeck():
             self.deck.append(TarrotCard(value, None))
             TarrotDeck.card_count += 1
 
-            
-
-
+    def shuffleDeck(self, times_to_shuffle=5):
+        '''shuffle the deck 'times_to_shuffle'  '''
+        for round in range(0,times_to_shuffle):
+            random.shuffle(self.deck)
 
