@@ -51,7 +51,8 @@ def getTarrotDeck() -> list:
 
 
 class TarrotCard:
-    """ Create a single tarrot card, requires a value and a suite, suite can be None"""
+    """ A tarrot card, requires a value and a suite, suite can be None"""
+    card_count = 0
     def __init__(self, value, suite):
 
         if suite:
@@ -68,3 +69,29 @@ class TarrotCard:
             self.rank = major_arcana_ranks[value]
             self.arcana = "Major"
             self.reversed = False
+        
+        TarrotCard.card_count += 1
+        
+    def __str__(self):
+        return self.name()
+
+class TarrotDeck():
+    '''A Tarrot Deck'''
+    card_count = 0
+    #deck = []
+
+    def __init__(self):
+        self.deck = []
+        for suite in suites:
+            for value in range(14):
+                self.deck.append(TarrotCard(value, suite))
+                TarrotDeck.card_count += 1
+
+        for value in range(22):
+            self.deck.append(TarrotCard(value, None))
+            TarrotDeck.card_count += 1
+
+            
+
+
+
