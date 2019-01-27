@@ -5,11 +5,13 @@
 
     Author: Scott Larson (scott.a.larson@gmail.com)
     Date: 2019-01-21
+
+    2019-01-27 pylint score 10/10
 """
 
 import os
 from tarrotCard import getRandomTarrotCard
-from support.logos import logo4 as logo
+from support.logos import LOGO4 as logo
 
 # This will only get random cards and the cards may not be unique
 
