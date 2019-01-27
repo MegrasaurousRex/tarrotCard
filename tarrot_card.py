@@ -127,10 +127,7 @@ class TarrotDeck():
             The cards are popped off of the deck
         '''
         self.shuffle_deck(15)
-        
-        ### Pick UP Here:
-        ### return them to the deck, for future calls
-        ### return the temp_deck
+
         for i in range(0, range(spread_size)):
             self.draw_a_card()
 
