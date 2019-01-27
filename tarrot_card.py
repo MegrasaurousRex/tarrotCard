@@ -7,6 +7,8 @@
 """
 
 import random
+from random import shuffle
+import uuid
 
 # Unsure if these should go in the TarrotCard class or not...
 MAJOR_ARCANA_CNAMES = ("The Magician", "The High Priestess", "The Empress",
@@ -79,12 +81,9 @@ class TarrotCard:
 
 class TarrotDeck():
     '''A Tarrot Deck'''
-    from random import shuffle
-
     card_count = 0
 
     def __init__(self):
-        import uuid
         self.deck_guid = str(uuid.uuid1())
         self.deck = []
         for suite in SUITES:
