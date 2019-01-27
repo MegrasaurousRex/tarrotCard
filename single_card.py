@@ -10,7 +10,7 @@
 """
 
 import os
-from tarrotCard import getRandomTarrotCard
+from tarrot_card import get_random_tarrot_card
 from support.logos import LOGO4 as logo
 
 # This will only get random cards and the cards may not be unique
@@ -19,7 +19,7 @@ while True:
     os.system('clear')
     print("Welcome to the single card Tarrot spread")
 
-    YOUR_CARD = getRandomTarrotCard()
+    YOUR_CARD = get_random_tarrot_card()
     print("Your card is: {}".format(YOUR_CARD.name))
 
     CONT = input("Get anther card ('n' to exit)")
