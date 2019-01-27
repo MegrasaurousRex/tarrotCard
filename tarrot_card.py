@@ -120,7 +120,7 @@ class TarrotDeck():
             Draw a card from the top of the deck and add it to the 
             spread.
         """
-        self.spread.apped(self.deck.pop())
+        self.spread.append(self.deck.pop())
 
     def get_a_spread(self, spread_size=3):
         ''' Return a list of cards, "a spread", default is 3 cards
@@ -133,6 +133,4 @@ class TarrotDeck():
         ### return the temp_deck
         for i in range(0, range(spread_size)):
             self.draw_a_card()
-
-        return the_spread
 
