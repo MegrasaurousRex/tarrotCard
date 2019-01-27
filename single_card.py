@@ -1,8 +1,8 @@
 
 """
     A very simple script to get a single Tarrot card
-    using the TarrotCard class. 
-    
+    using the TarrotCard class.
+
     Author: Scott Larson (scott.a.larson@gmail.com)
     Date: 2019-01-21
 """
@@ -17,11 +17,11 @@ while True:
     os.system('clear')
     print("Welcome to the single card Tarrot spread")
 
-    your_card = getRandomTarrotCard()
-    print("Your card is: {}".format(your_card.name))
+    YOUR_CARD = getRandomTarrotCard()
+    print("Your card is: {}".format(YOUR_CARD.name))
 
-    cont = input("Get anther card ('n' to exit)")
-    if cont.lower() == "n":
+    CONT = input("Get anther card ('n' to exit)")
+    if CONT.lower() == "n":
         print("Thanks for playing")
         break
 
