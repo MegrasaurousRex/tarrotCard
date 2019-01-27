@@ -28,23 +28,25 @@ SUITES = ("Cups", "Swords", "Wands", "Pentacles")
 
 def get_random_tarrot_card():
     """Return a random Tarrot card object"""
-    major_or_minor = random.randint(0, 1)
-    card_choice = 0
+    # major_or_minor = random.randint(0, 1)
+    # card_choice = 0
 
-    if major_or_minor == 0:
-        suite = random.choice(SUITES)
-        card_choice = random.randint(0, 13)
-    else:
-        suite = None
-        card_choice = random.randint(0, 21)
+    # if major_or_minor == 0:
+    #     suite = random.choice(SUITES)
+    #     card_choice = random.randint(0, 13)
+    # else:
+    #     suite = None
+    #     card_choice = random.randint(0, 21)
 
-    return TarrotCard(card_choice, suite)
+    # return TarrotCard(card_choice, suite)
+    a_deck = get_tarrot_deck()
+    return random.choice(a_deck)
 
 
 def get_tarrot_deck() -> list:
     """ Return a Tarrot Deck, a python list of TarrotCard objects """
     deck = []
-    # should this be passed in?
+    # should this be passed in as a param?
     deck_info_file = 'support/tarrot_cards_data.json'
 
     # for suite in SUITES:
