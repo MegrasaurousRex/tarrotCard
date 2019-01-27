@@ -9,6 +9,7 @@
 import random
 from random import shuffle
 import uuid
+import json
 
 # Unsure if these should go in the TarrotCard class or not...
 MAJOR_ARCANA_CNAMES = ("The Magician", "The High Priestess", "The Empress",
@@ -43,13 +44,25 @@ def get_random_tarrot_card():
 def get_tarrot_deck() -> list:
     """ Return a Tarrot Deck, a python list of TarrotCard objects """
     deck = []
+    # should this be passed in?
+    deck_info_file = 'support/tarrot_cards_data.json'
 
-    for suite in SUITES:
-        for value in range(14):
-            deck.append(TarrotCard(value, suite))
+    # for suite in SUITES:
+    #     for value in range(14):
+    #         deck.append(TarrotCard(value, suite))
 
-    for value in range(22):
-        deck.append(TarrotCard(value, None))
+    # for value in range(22):
+    #     deck.append(TarrotCard(value, None))
+    with open(deck_info_file) as base_data:
+        the_data = json.load(base_data)
+    
+    # Append the major arcana to the deck
+    for card_name, rank in the_data['tarrot_cards']['major_arcana'].items():
+        deck.append(TarrotCard(card_name + " " + rank, None))
+    
+    for suite in the_data['tarrot_cards']['minor_arcana']['suites']:
+        for card_name in the_data['tarrot_cards']['minor_arcana']['cards']:
+            deck.append(TarrotCard(card_name + ' of ' + suite, suite))
 
     return deck
 
