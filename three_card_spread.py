@@ -20,8 +20,8 @@
 
 import os
 from random import randint, shuffle
-from tarrotCard import getTarrotDeck
-from support.logos import logo2 as logo
+from tarrot_card import get_tarrot_deck
+from support.logos import LOGO2 as logo
 
 
 def shuffle_the_deck(the_deck, max_shuffles=15):
@@ -52,7 +52,7 @@ def print_card_for_spread(card_number, card, color=30):
 
 if __name__ == "__main__":
 
-    MY_DECK = getTarrotDeck()
+    MY_DECK = get_tarrot_deck()
 
     while True:
 

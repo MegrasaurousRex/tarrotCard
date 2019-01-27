@@ -80,9 +80,12 @@ class TarrotCard:
 class TarrotDeck():
     '''A Tarrot Deck'''
     from random import shuffle
+
     card_count = 0
 
     def __init__(self):
+        import uuid
+        self.deck_guid = str(uuid.uuid1())
         self.deck = []
         for suite in SUITES:
             for value in range(14):
@@ -93,10 +96,16 @@ class TarrotDeck():
             self.deck.append(TarrotCard(value, None))
             TarrotDeck.card_count += 1
 
+    def get_deck_information(self):
+        """Get information about the deck """
+        return self.deck_guid
+
     def shuffle_deck(self, times_to_shuffle=13):
         '''shuffle the deck 'times_to_shuffle', default is 13 '''
         for this_round in range(0, times_to_shuffle):
             random.shuffle(self.deck)
+            if this_round == times_to_shuffle - 1:
+                print("\r")
 
 
     def get_a_spread(self, spread_size=3):
