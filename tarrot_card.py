@@ -81,38 +81,58 @@ class TarrotCard:
 
 class TarrotDeck():
     '''A Tarrot Deck'''
-    card_count = 0
 
     def __init__(self):
+        """Each deck will have a GUID, a deck, and a spread """
         self.deck_guid = str(uuid.uuid1())
         self.deck = []
+        self.spread = []
+
         for suite in SUITES:
             for value in range(14):
                 self.deck.append(TarrotCard(value, suite))
-                TarrotDeck.card_count += 1
 
         for value in range(22):
             self.deck.append(TarrotCard(value, None))
-            TarrotDeck.card_count += 1
 
-    def get_deck_information(self):
-        """Get information about the deck """
-        return self.deck_guid
+    def __str__(self):
+        """String repr for the deck"""
+        return "TarrotDeck ID: " + self.deck_guid
+
+    def __len__(self):
+        """Get the size of the deck """
+        return len(self.deck)
 
     def shuffle_deck(self, times_to_shuffle=13):
         '''shuffle the deck 'times_to_shuffle', default is 13 '''
+        if len(self.spread) > 0:
+            for a_card in self.spread:
+                # before shuffeling the deck, get cards from spread
+                self.deck.append(self.spread.pop())
+
         for this_round in range(0, times_to_shuffle):
-            random.shuffle(self.deck)
+            shuffle(self.deck)
             if this_round == times_to_shuffle - 1:
                 print("\r")
 
+    def draw_a_card(self):
+        """
+            Draw a card from the top of the deck and add it to the 
+            spread.
+        """
+        self.spread.apped(self.deck.pop())
 
     def get_a_spread(self, spread_size=3):
-        ''' Get cards for a spread, default is 3 cards '''
-        self.shuffle(self.deck)
-        the_spread = []
+        ''' Return a list of cards, "a spread", default is 3 cards
+            The cards are popped off of the deck
+        '''
+        self.shuffle_deck(15)
+        
         ### Pick UP Here:
-        ### Need to implement getting x cards
-        ### pop them to get uniqe cards
         ### return them to the deck, for future calls
         ### return the temp_deck
+        for i in range(0, range(spread_size)):
+            self.draw_a_card()
+
+        return the_spread
+
