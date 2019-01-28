@@ -1,9 +1,8 @@
 """
-    Basic Tarrot card class used to simulate a Tarrot Card or Tarrot deck
-    The TarrotCard objects have no mehtods only attributes
-
+    Basic Tarrot card class to simulate a Tarrot Card and Tarrot deck
+    
     Author: Scott Larson (scott.a.larson@gmail.com)
-    Date: 2019-01-21
+    Date: 2019-01-27
 """
 
 from random import shuffle, randint, choice
@@ -45,9 +44,12 @@ class TarrotCard:
     def __str__(self):
         return self.name()
 
+    def __len__(self):
+        return 1
+
 
 class TarrotDeck():
-    '''A Tarrot Deck'''
+    '''A Tarrot Deck class'''
 
     def __init__(self):
         """Each deck will have a GUID, a deck, and a spread """
@@ -55,7 +57,7 @@ class TarrotDeck():
         self.deck = []
         self.spread = []
 
-        # should this be passed in as a param?
+        # Get the data to build the deck
         deck_info_file = 'support/tarrot_cards_data.json'
 
         with open(deck_info_file) as base_data:
@@ -66,13 +68,13 @@ class TarrotDeck():
                 .items():
             self.deck.append(TarrotCard(rank, card_name + " " + rank, None))
 
-        # Append Minro Arcana to the deck
+        # Append Minor Arcana to the deck
         for suite in the_data['tarrot_cards']['minor_arcana']['suites']:
             for value, card_name in enumerate(the_data['tarrot_cards']['minor_arcana']['cards']):
                 self.deck.append(TarrotCard(value, card_name + ' of ' + suite, suite))
 
     def __str__(self):
-        """String repr for the deck"""
+        """String repr for the deck, this may be excessive"""
         for card in self.deck:
             print(card.name, card.rank, card.value)
         return "TarrotDeck ID: " + self.deck_guid
@@ -84,11 +86,13 @@ class TarrotDeck():
     def shuffle_deck(self, times_to_shuffle=13):
         '''shuffle the deck 'times_to_shuffle', default is 13 '''
 
+        # if a spread list exists, put those cards back into the deck.
         while self.spread:
             a_card = self.spread.pop()
             a_card.reversed = False
             self.deck.append(a_card)
 
+        # shuffle the cards sufficently to randomize the deck
         for this_round in range(0, times_to_shuffle):
             shuffle(self.deck)
             if this_round == times_to_shuffle - 1:
@@ -110,15 +114,17 @@ class TarrotDeck():
             card.reversed = True
         return card
 
-    def get_a_spread(self, spread_size=3):
-        ''' Return a list of cards, "a spread", default is 3 cards
+    def get_a_spread(self, spread_size=4):
+        ''' Return a list of cards, "a spread", default is 4 cards
             The cards are popped off of the deck
         '''
         if spread_size > 78:
             spread_size = 78
 
+        # Randomize again, just to be sure
         self.shuffle_deck(15)
 
+        # Put all of the cards into the spread
         for i in range(0, spread_size):
             if i == 8:
                 pass  # to shut up pylint
