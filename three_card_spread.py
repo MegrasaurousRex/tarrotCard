@@ -17,9 +17,8 @@
     Date: 2019-01-21
 """
 
-
 import os
-from random import randint, shuffle
+from random import randint
 from tarrot_card import TarrotDeck
 from support.logos import LOGO2 as logo
 
@@ -32,7 +31,8 @@ def print_card_for_spread(card_number, card, color=30):
     # The output message uses colored text, the follwoing string
     # is used as a template to build the colored message.
     the_output = """\033[31m{}: \033[0m \033[0{}m{} {}\033[0m"""
-    reversed_card = " **Reversed**" if card.reversed == True else ""
+    reversed_card = " **Reversed**" if card.reversed else ""
+    # the following is only good for 3 card spread
     card_msg_lst = ["Your", "The 1st", "The 2nd", "The 3rd"]
     card_message = card_msg_lst[card_number] + " Card is" + "\t"
 
@@ -44,20 +44,15 @@ if __name__ == "__main__":
 
     while True:
         # randomize the cards, if a spread exists put them back and then shuffle
-        MY_DECK.shuffle_deck(randint(13,50))
+        MY_DECK.shuffle_deck(randint(13, 50))
 
         os.system('clear')
 
         print("\033[35mWelcome to the Tarrot simple three card spread generator")
-        doTheReading = input("\033[36mTo create your spread press enter >>\033[0m")
+        WAIT_FOR_USER = input("\033[36mTo create your spread press enter >>\033[0m")
 
         # Build and display the spread, using TarrotDeck.get_a_spread() method
         MY_DECK.get_a_spread(4)
-
-        # Check to see if any cards are reversed ## handled by the TarrotDeck now
-        # for card in MY_DECK.spread:
-        #     if randint(1, 243) % 19 == 9: # should be roughly 5% of all cards.
-        #         card.reversed = True
 
         # Print the cards of the spread out for the user, function is set for 4 cards
         for inc, a_card in enumerate(MY_DECK.spread):
@@ -69,11 +64,5 @@ if __name__ == "__main__":
 
         if input('Play again Enter or "n" to exit: ').lower() == 'n':
             break
-
-        ## The following lines should not be needed anymore, TarrotDeck handles this
-        # reset reversed, and put the cards back into the deck for another round
-        # for a_card in MY_DECK.spread:
-        #     a_card.reversed = False
-        #     MY_DECK.deck.insert(0,MY_DECK.spread.pop())
 
     print("Thank you for using...{}".format(logo))
