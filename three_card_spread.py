@@ -17,7 +17,6 @@ import os
 from random import randint
 from tarrot_card import TarrotDeck
 from support.logos import get_a_random_logo
-#from support.logos import LOGO2 as logo
 
 
 def print_card_for_spread(card_number, card, color=30):
@@ -55,17 +54,17 @@ if __name__ == "__main__":
         # Build and display the spread, using TarrotDeck.get_a_spread() method
         MY_DECK.get_a_spread(4)
 
-        # Print the cards of the spread out for the user. 
+        # Print the cards of the spread out for the user.
         # This script is made for a 4 card spread
         for inc, a_card in enumerate(MY_DECK.spread):
             print_card_for_spread(inc, a_card, str(32 + inc))
 
-        print("\n\033[35mPlease refer to google for the meanings of the cards and\
-        \n\rhttps://thesimpletarot.com/3-card-tarot-spreads-for-beginners/\
+        print("\n\033[35mPlease refer to google for the meanings of the cards \
+        and\n\rhttps://thesimpletarot.com/3-card-tarot-spreads-for-beginners/\
         \n\rfor information on the many kinds of three card spreads that \
         exist.\033[0m")
 
         if input('Play again Enter or "n" to exit: ').lower() == 'n':
             break
-    
+
     print("Thank you for using...{}".format(get_a_random_logo()))

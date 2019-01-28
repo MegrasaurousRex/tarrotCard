@@ -1,6 +1,6 @@
 """
     Basic Tarrot card class to simulate a Tarrot Card and Tarrot deck
-    
+
     Author: Scott Larson (scott.a.larson@gmail.com)
     Date: 2019-01-27
 """
