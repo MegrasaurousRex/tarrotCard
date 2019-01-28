@@ -1,0 +1,35 @@
+{
+    "tarrot_cards":{
+        "major_arcana":{
+            "The Magician":["I", 1],
+            "The High Priestess":["II", 2],
+            "The Empress":["III", 3 ],
+            "The Emperor":["[IV", 4],
+            "The Hierophant":["V", 5],
+            "The Lovers":["VI", 6],
+            "The Chariot":["VII", 7],
+            "Strength":["VIII", 8],
+            "The Hermit":["IX", 9],
+            "Wheel of Fortune":["X", 10],
+            "Justice":["XI", 11],
+            "The Hanged Man":["XII", 12],
+            "Death":["XIII", 13],
+            "Temperance":["XIV", 14],
+            "The Devil":["XV", 15],
+            "The Tower":["XVI", 16],
+            "The Star":["XVII", 17],
+            "The Moon":["XVIII", 18],
+            "The Sun":["XIX", 19],
+            "Judgement":["XX", 20],
+            "The World":["XXI", 21],
+            "The Fool":["None", ""]
+        },
+        "minor_arcana":{
+            "suites":["Cups", "Swords", "Wands", "Pentacles"],
+            "cards":["A", "2", "3", "4", "5", "6", "7", "8", "9",
+                     "10", "Jack", "Knight", "Queen", "King"],
+            "note":"Some assembly required"
+        }
+
+    }
+}
