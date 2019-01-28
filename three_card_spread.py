@@ -16,7 +16,8 @@
 import os
 from random import randint
 from tarrot_card import TarrotDeck
-from support.logos import LOGO2 as logo
+from support.logos import get_a_random_logo
+#from support.logos import LOGO2 as logo
 
 
 def print_card_for_spread(card_number, card, color=30):
@@ -67,4 +68,4 @@ if __name__ == "__main__":
         if input('Play again Enter or "n" to exit: ').lower() == 'n':
             break
     
-    print("Thank you for using...{}".format(logo))
+    print("Thank you for using...{}".format(get_a_random_logo()))

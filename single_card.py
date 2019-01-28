@@ -11,7 +11,7 @@
 
 import os
 from tarrot_card import get_random_tarrot_card
-from support.logos import LOGO4 as logo
+from support.logos import get_a_random_logo
 
 # This will get random card from a TarrotDeck Object
 
@@ -27,4 +27,4 @@ while True:
         print("Thanks for playing")
         break
 
-print("Thank you for using...{}".format(logo))
+print("Thank you for using...{}".format(get_a_random_logo()))
