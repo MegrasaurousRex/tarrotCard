@@ -43,22 +43,21 @@ if __name__ == "__main__":
     MY_DECK = TarrotDeck()
 
     while True:
-        # randomize the cards
+        # randomize the cards, if a spread exists put them back and then shuffle
         MY_DECK.shuffle_deck(randint(13,50))
 
         os.system('clear')
 
-        #spread = []
         print("\033[35mWelcome to the Tarrot simple three card spread generator")
         doTheReading = input("\033[36mTo create your spread press enter >>\033[0m")
 
         # Build and display the spread, using TarrotDeck.get_a_spread() method
         MY_DECK.get_a_spread(4)
 
-        # Check to see if any cards are reversed
-        for card in MY_DECK.spread:
-            if randint(1, 243) % 19 == 9: # should be roughly 5% of all cards.
-                card.reversed = True
+        # Check to see if any cards are reversed ## handled by the TarrotDeck now
+        # for card in MY_DECK.spread:
+        #     if randint(1, 243) % 19 == 9: # should be roughly 5% of all cards.
+        #         card.reversed = True
 
         # Print the cards of the spread out for the user, function is set for 4 cards
         for inc, a_card in enumerate(MY_DECK.spread):
@@ -71,9 +70,10 @@ if __name__ == "__main__":
         if input('Play again Enter or "n" to exit: ').lower() == 'n':
             break
 
+        ## The following lines should not be needed anymore, TarrotDeck handles this
         # reset reversed, and put the cards back into the deck for another round
-        for a_card in MY_DECK.spread:
-            a_card.reversed = False
-            MY_DECK.deck.insert(0,MY_DECK.spread.pop())
+        # for a_card in MY_DECK.spread:
+        #     a_card.reversed = False
+        #     MY_DECK.deck.insert(0,MY_DECK.spread.pop())
 
     print("Thank you for using...{}".format(logo))
