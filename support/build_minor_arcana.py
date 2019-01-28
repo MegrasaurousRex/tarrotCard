@@ -1,4 +1,6 @@
-
+"""
+    This file was for fine tuning the the work with the json file
+"""
 MINOR_ARCANA_CNAMES = ("A", "2", "3", "4", "5", "6", "7", "8", "9",
                        "10", 'Jack', 'Knight', 'Queen', 'King')
 SUITES = ("Cups", "Swords", "Wands", "Pentacles")
