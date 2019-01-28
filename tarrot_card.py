@@ -25,7 +25,6 @@ def get_tarrot_deck() -> list:
 
 class TarrotCard:
     """ A tarrot card, requires a value and a suite, suite can be None"""
-    card_count = 0
     def __init__(self, value, name, suite):
 
         if suite:
@@ -42,7 +41,6 @@ class TarrotCard:
             self.rank = value
             self.arcana = "Major"
             self.reversed = False
-        TarrotCard.card_count += 1
 
     def __str__(self):
         return self.name()
@@ -61,11 +59,11 @@ class TarrotDeck():
 
         with open(deck_info_file) as base_data:
             the_data = json.load(base_data)
-        
+
         # Append Major Arcana to the deck
         for card_name, rank in the_data['tarrot_cards']['major_arcana'].items():
             self.deck.append(TarrotCard(rank, card_name + " " + rank, None))
-        
+
         # Append Minro Arcana to the deck
         for suite in the_data['tarrot_cards']['minor_arcana']['suites']:
             for value, card_name in enumerate(the_data['tarrot_cards']['minor_arcana']['cards']):
@@ -83,19 +81,18 @@ class TarrotDeck():
 
     def shuffle_deck(self, times_to_shuffle=13):
         '''shuffle the deck 'times_to_shuffle', default is 13 '''
-        if len(self.spread) > 0:
-            for a_card in self.spread:
-                # before shuffeling the deck, get cards from spread
-                self.deck.append(self.spread.pop())
+
+        while self.spread:
+            self.deck.append(self.spread.pop())
 
         for this_round in range(0, times_to_shuffle):
             shuffle(self.deck)
             if this_round == times_to_shuffle - 1:
-                print("\r")
-        # Ensure we have the right number of cards 
-        if self.__len__() != 78:
-            print(len(self.deck))
-            print("Something is wrong, there are: {} cards".format(self.__len__()))
+                pass # to make pylint shut up
+
+        # Ensure we have the right number of cards, alert if not
+        if len(self.deck) != 78:
+            print("Something is wrong, there are: {} cards".format(len(self.deck)))
 
     def draw_a_card(self):
         """
@@ -108,8 +105,10 @@ class TarrotDeck():
         ''' Return a list of cards, "a spread", default is 3 cards
             The cards are popped off of the deck
         '''
+        if spread_size > 78:
+            spread_size = 78
+
         self.shuffle_deck(15)
 
         for i in range(0, spread_size):
             self.spread.append(self.draw_a_card())
-
