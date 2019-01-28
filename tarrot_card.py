@@ -32,7 +32,7 @@ class TarrotCard:
             self.name = name
             self.suite = suite
             self.value = value + 1
-            self.rank = value + 1
+            self.rank = suite[0].upper() + str(value + 1)
             self.arcana = "Minor"
             self.reversed = False
         else:
@@ -73,6 +73,8 @@ class TarrotDeck():
 
     def __str__(self):
         """String repr for the deck"""
+        for card in self.deck:
+            print(card.name, card.rank, card.value)
         return "TarrotDeck ID: " + self.deck_guid
 
     def __len__(self):
@@ -90,10 +92,15 @@ class TarrotDeck():
             shuffle(self.deck)
             if this_round == times_to_shuffle - 1:
                 print("\r")
+        # Ensure we have the right number of cards 
+        if self.__len__() != 78:
+            print(len(self.deck))
+            print("Something is wrong, there are: {} cards".format(self.__len__()))
 
     def draw_a_card(self):
         """
-            Draw, pop(), a card from the top of the deck 
+            Draw, pop(), a card from the top of the deck, just pops a card
+            You have to manage the card and put it back in the deck
         """
         return self.deck.pop()
 
