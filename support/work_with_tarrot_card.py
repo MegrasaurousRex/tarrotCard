@@ -7,8 +7,9 @@
     completely removed the for loop. Used the while len(spread) > 0, pop()
     This worked.
 """
-
-import ../tarrot_card
+import sys
+sys.path.append("..")
+import tarrot_card
 
 def print_spread_len(a_deck):
     print("len of spread: {}".format(len(a_deck.spread)))
