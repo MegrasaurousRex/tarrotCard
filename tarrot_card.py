@@ -10,6 +10,7 @@ from random import shuffle, randint, choice
 import uuid
 import json
 
+
 def get_random_tarrot_card():
     """Return a random Tarrot card object"""
     a_deck = TarrotDeck()
@@ -44,6 +45,7 @@ class TarrotCard:
     def __str__(self):
         return self.name()
 
+
 class TarrotDeck():
     '''A Tarrot Deck'''
 
@@ -60,7 +62,8 @@ class TarrotDeck():
             the_data = json.load(base_data)
 
         # Append Major Arcana to the deck
-        for card_name, rank in the_data['tarrot_cards']['major_arcana'].items():
+        for card_name, rank in the_data['tarrot_cards']['major_arcana']\
+                .items():
             self.deck.append(TarrotCard(rank, card_name + " " + rank, None))
 
         # Append Minro Arcana to the deck
@@ -89,11 +92,12 @@ class TarrotDeck():
         for this_round in range(0, times_to_shuffle):
             shuffle(self.deck)
             if this_round == times_to_shuffle - 1:
-                pass # to make pylint shut up
+                pass  # to make pylint shut up
 
         # Ensure we have the right number of cards, alert if not
         if len(self.deck) != 78:
-            print("Something is wrong, there are: {} cards".format(len(self.deck)))
+            print("Something is wrong, there are: {} \
+                   cards".format(len(self.deck)))
 
     def draw_a_card(self):
         """
@@ -102,7 +106,7 @@ class TarrotDeck():
             Randomly causes a card to be reversed.
         """
         card = self.deck.pop()
-        if randint(1, 243) % 19 == 9: # should be roughly 5% of all cards.
+        if randint(1, 243) % 19 == 9:  # should be roughly 5% of all cards.
             card.reversed = True
         return card
 
@@ -117,5 +121,5 @@ class TarrotDeck():
 
         for i in range(0, spread_size):
             if i == 8:
-                pass # to shut up pylint
+                pass  # to shut up pylint
             self.spread.append(self.draw_a_card())
