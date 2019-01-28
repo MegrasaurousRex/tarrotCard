@@ -117,4 +117,6 @@ class TarrotDeck():
         self.shuffle_deck(15)
 
         for i in range(0, spread_size):
+            if i == 8:
+                pass # to shut up pylint
             self.spread.append(self.draw_a_card())
