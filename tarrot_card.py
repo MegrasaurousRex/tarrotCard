@@ -167,10 +167,9 @@ class TarrotDeck():
 
     def draw_a_card(self):
         """
-            Draw a card from the top of the deck and add it to the 
-            spread.
+            Draw, pop(), a card from the top of the deck 
         """
-        self.spread.append(self.deck.pop())
+        return self.deck.pop()
 
     def get_a_spread(self, spread_size=3):
         ''' Return a list of cards, "a spread", default is 3 cards
@@ -178,6 +177,6 @@ class TarrotDeck():
         '''
         self.shuffle_deck(15)
 
-        for i in range(0, range(spread_size)):
-            self.draw_a_card()
+        for i in range(0, spread_size):
+            self.spread.append(self.draw_a_card())
 
