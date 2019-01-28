@@ -1,5 +1,5 @@
 """
-    Basic Tarrot card class to simulate a Tarrot Card and Tarrot deck
+    Basic Tarrot card class to simulate a Tarrot card and Tarrot deck
 
     Author: Scott Larson (scott.a.larson@gmail.com)
     Date: 2019-01-27
@@ -22,7 +22,7 @@ def get_tarrot_deck() -> list:
     return TarrotDeck()
 
 
-class TarrotCard:
+class TarrotCard():
     """ A tarrot card, requires a value and a suite, suite can be None"""
     def __init__(self, value, name, suite):
 
