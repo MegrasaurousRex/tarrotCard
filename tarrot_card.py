@@ -6,8 +6,7 @@
     Date: 2019-01-21
 """
 
-import random
-from random import shuffle, randint
+from random import shuffle, randint, choice
 import uuid
 import json
 
@@ -15,7 +14,7 @@ def get_random_tarrot_card():
     """Return a random Tarrot card object"""
     a_deck = TarrotDeck()
     a_deck.shuffle_deck(25)
-    return random.choice(a_deck.deck)
+    return choice(a_deck.deck)
 
 
 def get_tarrot_deck() -> list:
