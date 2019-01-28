@@ -13,7 +13,7 @@ import os
 from tarrot_card import get_random_tarrot_card
 from support.logos import LOGO4 as logo
 
-# This will only get random cards and the cards may not be unique
+# This will get random cards from a TarrotDeck Object
 
 while True:
     os.system('clear')

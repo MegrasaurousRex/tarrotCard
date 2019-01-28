@@ -39,15 +39,17 @@ def get_random_tarrot_card():
     #     card_choice = random.randint(0, 21)
 
     # return TarrotCard(card_choice, suite)
-    a_deck = get_tarrot_deck()
-    return random.choice(a_deck)
+    # a_deck = get_tarrot_deck()
+    a_deck = TarrotDeck()
+    a_deck.shuffle_deck(25)
+    return random.choice(a_deck.deck)
 
 
 def get_tarrot_deck() -> list:
     """ Return a Tarrot Deck, a python list of TarrotCard objects """
-    deck = []
-    # should this be passed in as a param?
-    deck_info_file = 'support/tarrot_cards_data.json'
+    # deck = []
+    # # should this be passed in as a param?
+    # deck_info_file = 'support/tarrot_cards_data.json'
 
     # for suite in SUITES:
     #     for value in range(14):
@@ -55,40 +57,54 @@ def get_tarrot_deck() -> list:
 
     # for value in range(22):
     #     deck.append(TarrotCard(value, None))
-    with open(deck_info_file) as base_data:
-        the_data = json.load(base_data)
+    # with open(deck_info_file) as base_data:
+    #     the_data = json.load(base_data)
     
-    # Append the major arcana to the deck
-    for card_name, rank in the_data['tarrot_cards']['major_arcana'].items():
-        deck.append(TarrotCard(card_name + " " + rank, None))
+    # # Append the major arcana to the deck
+    # for card_name, rank in the_data['tarrot_cards']['major_arcana'].items():
+    #     deck.append(TarrotCard(rank, card_name + " " + rank, None))
     
-    for suite in the_data['tarrot_cards']['minor_arcana']['suites']:
-        for card_name in the_data['tarrot_cards']['minor_arcana']['cards']:
-            deck.append(TarrotCard(card_name + ' of ' + suite, suite))
-
-    return deck
+    # for suite in the_data['tarrot_cards']['minor_arcana']['suites']:
+    #     for value, card_name in enumerate(the_data['tarrot_cards']['minor_arcana']['cards']):
+    #         deck.append(TarrotCard(value, card_name + ' of ' + suite, suite))
+    
+    return TarrotDeck()
 
 
 class TarrotCard:
     """ A tarrot card, requires a value and a suite, suite can be None"""
     card_count = 0
-    def __init__(self, value, suite):
+    def __init__(self, value, name, suite):
+
+        # if suite:
+        #     self.name = MINOR_ARCANA_CNAMES[value] + " of " + suite
+        #     self.suite = suite
+        #     self.value = value + 1
+        #     self.rank = MINOR_ARCANA_CNAMES[value]
+        #     self.arcana = "Minor"
+        #     self.reversed = False
+        # else:
+        #     self.name = MAJOR_ARCANA_CNAMES[value] + " " + str(MAJOR_ARCANA_RANKS[value])
+        #     self.suite = suite
+        #     self.value = value + 1
+        #     self.rank = MAJOR_ARCANA_RANKS[value]
+        #     self.arcana = "Major"
+        #     self.reversed = False
 
         if suite:
-            self.name = MINOR_ARCANA_CNAMES[value] + " of " + suite
+            self.name = name
             self.suite = suite
             self.value = value + 1
-            self.rank = MINOR_ARCANA_CNAMES[value]
+            self.rank = value + 1
             self.arcana = "Minor"
             self.reversed = False
         else:
-            self.name = MAJOR_ARCANA_CNAMES[value] + " " + str(MAJOR_ARCANA_RANKS[value])
+            self.name = name
             self.suite = suite
-            self.value = value + 1
-            self.rank = MAJOR_ARCANA_RANKS[value]
+            self.value = value
+            self.rank = value
             self.arcana = "Major"
             self.reversed = False
-
         TarrotCard.card_count += 1
 
     def __str__(self):
@@ -103,12 +119,31 @@ class TarrotDeck():
         self.deck = []
         self.spread = []
 
-        for suite in SUITES:
-            for value in range(14):
-                self.deck.append(TarrotCard(value, suite))
+        # for suite in SUITES:
+        #     for value in range(14):
+        #         self.deck.append(TarrotCard(value, suite))
 
-        for value in range(22):
-            self.deck.append(TarrotCard(value, None))
+        # for value in range(22):
+        #     self.deck.append(TarrotCard(value, None))
+        # should this be passed in as a param?
+        deck_info_file = 'support/tarrot_cards_data.json'
+
+        with open(deck_info_file) as base_data:
+            the_data = json.load(base_data)
+        
+        # Append the major arcana to the deck
+        # for card_name, rank in the_data['tarrot_cards']['major_arcana'].items():
+        #     self.deck.append(TarrotCard(rank, card_name + " " + rank, None))
+        
+        # for suite in the_data['tarrot_cards']['minor_arcana']['suites']:
+        #     for card_name in the_data['tarrot_cards']['minor_arcana']['cards']:
+        #         self.deck.append(TarrotCard(card_name + ' of ' + suite, suite))
+        for card_name, rank in the_data['tarrot_cards']['major_arcana'].items():
+            self.deck.append(TarrotCard(rank, card_name + " " + rank, None))
+        
+        for suite in the_data['tarrot_cards']['minor_arcana']['suites']:
+            for value, card_name in enumerate(the_data['tarrot_cards']['minor_arcana']['cards']):
+                self.deck.append(TarrotCard(value, card_name + ' of ' + suite, suite))
 
     def __str__(self):
         """String repr for the deck"""
