@@ -20,22 +20,9 @@
 
 import os
 from random import randint, shuffle
-from tarrot_card import get_tarrot_deck
 from tarrot_card import TarrotDeck
 from support.logos import LOGO2 as logo
 
-## No longer required, deck can shuffle itself
-# def shuffle_the_deck(the_deck, max_shuffles=15):
-#     """
-#         Shuffle the deck a random number of times to simulate a real shuffling.
-#         Shuffle a minimum of 2 times, and a random max number having a default
-#         max of 15 times. Note: 'random.shuffle()' shuffles a sequence in place.
-#     """
-
-#     for round_of_shuffeling in range(2, randint(3, max_shuffles)):
-#         if round_of_shuffeling == 5: # pep8, unused var wrng, this to stop it
-#             print('', end='')
-#         shuffle(the_deck)
 
 def print_card_for_spread(card_number, card, color=30):
     """
@@ -61,28 +48,20 @@ if __name__ == "__main__":
 
         os.system('clear')
 
-        spread = []
+        #spread = []
         print("\033[35mWelcome to the Tarrot simple three card spread generator")
         doTheReading = input("\033[36mTo create your spread press enter >>\033[0m")
 
-        # Build and display the spread.
-        while True:
-            # get the top 4 cards, as you would in a physical reading.
-            a_card = MY_DECK.deck.pop(0)
+        # Build and display the spread, using TarrotDeck.get_a_spread() method
+        MY_DECK.get_a_spread(4)
 
-            # Tarrot cards can be reversed, see if this card is 'reversed'.
+        # Check to see if any cards are reversed
+        for card in MY_DECK.spread:
             if randint(1, 243) % 19 == 9: # should be roughly 5% of all cards.
-                a_card.reversed = True
+                card.reversed = True
 
-            # Add the card to the spread
-            spread.append(a_card)
-
-            # Only get 4 cards for this spread
-            if len(spread) == 4:
-                break
-
-        # Print the cards of the spread out for the user
-        for inc, a_card in enumerate(spread):
+        # Print the cards of the spread out for the user, function is set for 4 cards
+        for inc, a_card in enumerate(MY_DECK.spread):
             print_card_for_spread(inc, a_card, str(32 + inc))
 
         print("\n\033[35mPlease refer to google for the meanings of the cards and\
@@ -93,8 +72,8 @@ if __name__ == "__main__":
             break
 
         # reset reversed, and put the cards back into the deck for another round
-        for a_card in spread:
+        for a_card in MY_DECK.spread:
             a_card.reversed = False
-            MY_DECK.deck.insert(0,a_card)
+            MY_DECK.deck.insert(0,MY_DECK.spread.pop())
 
     print("Thank you for using...{}".format(logo))
