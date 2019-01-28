@@ -7,7 +7,7 @@
 """
 
 import random
-from random import shuffle
+from random import shuffle, randint
 import uuid
 import json
 
@@ -83,7 +83,9 @@ class TarrotDeck():
         '''shuffle the deck 'times_to_shuffle', default is 13 '''
 
         while self.spread:
-            self.deck.append(self.spread.pop())
+            a_card = self.spread.pop()
+            a_card.reversed = False
+            self.deck.append(a_card)
 
         for this_round in range(0, times_to_shuffle):
             shuffle(self.deck)
@@ -97,9 +99,13 @@ class TarrotDeck():
     def draw_a_card(self):
         """
             Draw, pop(), a card from the top of the deck, just pops a card
-            You have to manage the card and put it back in the deck
+            You have to manage the card and put it back in the deck.
+            Randomly causes a card to be reversed.
         """
-        return self.deck.pop()
+        card = self.deck.pop()
+        if randint(1, 243) % 19 == 9: # should be roughly 5% of all cards.
+            card.reversed = True
+        return card
 
     def get_a_spread(self, spread_size=3):
         ''' Return a list of cards, "a spread", default is 3 cards
