@@ -15,8 +15,9 @@
 
 import os
 from random import randint
-from tarrot_card import TarrotDeck
+
 from support.logos import get_a_random_logo
+from tarrot_card import TarrotDeck
 
 
 def print_card_for_spread(card_number, card, color=30):
@@ -46,8 +47,7 @@ if __name__ == "__main__":
 
         os.system('clear')
 
-        print("\033[35mWelcome to the Tarrot simple three card spread \
-            generator")
+        print("\033[35mWelcome to the Tarrot simple three card spread generator")
         WAIT_FOR_USER = \
             input("\033[36mTo create your spread press enter >>\033[0m")
 
@@ -60,9 +60,9 @@ if __name__ == "__main__":
             print_card_for_spread(inc, a_card, str(32 + inc))
 
         print("\n\033[35mPlease refer to google for the meanings of the cards \
-        and\n\rhttps://thesimpletarot.com/3-card-tarot-spreads-for-beginners/\
-        \n\rfor information on the many kinds of three card spreads that \
-        exist.\033[0m")
+        \n\rand https://thesimpletarot.com/3-card-tarot-spreads-for-beginners/\
+        \n\rfor information on the many kinds of three card spreads that exist.\
+        \033[0m")
 
         if input('Play again Enter or "n" to exit: ').lower() == 'n':
             break

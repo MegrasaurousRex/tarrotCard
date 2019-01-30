@@ -47,6 +47,37 @@ class TarrotCard():
     def __len__(self):
         return 1
 
+class TarrotCard2():
+    """ A tarrot card, requires a value and a suite, suite can be None"""
+    def __init__(self, value, name, rank, suite):
+
+        if suite:
+            self.name = name
+            self.suite = suite
+            self.value = value + 1
+            self.rank = rank
+            self.arcana = "Minor"
+            self.reversed = False
+        else:
+            self.name = name
+            self.suite = suite
+            self.value = value
+            self.rank = rank
+            self.arcana = "Major"
+            self.reversed = False
+
+    def __str__(self):
+        return self.name()
+
+    def __len__(self):
+        return 1
+    
+    def get_card_value(self):
+        return self.value
+    
+    def get_card_rank(self):
+        return self.rank
+
 
 class TarrotDeck():
     '''A Tarrot Deck class'''
@@ -55,23 +86,38 @@ class TarrotDeck():
         """Each deck will have a GUID, a deck, and a spread """
         self.deck_guid = str(uuid.uuid1())
         self.deck = []
+        self.deck2 = []
         self.spread = []
 
         # Get the data to build the deck
         deck_info_file = 'support/tarrot_cards_data.json'
+        deck_info_file2 = 'support/tarrot_cards_data.1.json'
 
+        # for tarrotCard()
         with open(deck_info_file) as base_data:
             the_data = json.load(base_data)
+        
+        # for tarrotCard2(), different datastructure in file
+        with open(deck_info_file2) as base_data2:
+            the_data2 = json.load(base_data2)
 
         # Append Major Arcana to the deck
+        # for tarrotCard()
         for card_name, rank in the_data['tarrot_cards']['major_arcana']\
                 .items():
             self.deck.append(TarrotCard(rank, card_name + " " + rank, None))
+        
+        # for TarrotCard2()
+        for card_name, rank in the_data2['tarrot_cards']['major_arcana']\
+                .items():
+            self.deck2.append(TarrotCard2(rank[1], card_name + " " + rank[0], rank[1], None))
 
-        # Append Minor Arcana to the deck
+        # Append Minor Arcana to the deck ## Should there be seperate json files for Maj an Min
         for suite in the_data['tarrot_cards']['minor_arcana']['suites']:
             for value, card_name in enumerate(the_data['tarrot_cards']['minor_arcana']['cards']):
                 self.deck.append(TarrotCard(value, card_name + ' of ' + suite, suite))
+                # for TarrotCard2
+                self.deck2.append(TarrotCard(value, card_name + ' of ' + suite, suite))
 
     def __str__(self):
         """String repr for the deck, this may be excessive"""
